@@ -1,35 +1,37 @@
-const server = require('./src/app');
-const mongoose = require('mongoose');
+// const dotenv = require("dotenv");
+// dotenv.config({ path: "./config.env" });
+// const MONGODB_URI = process.env.MONGODB;
+// console.log(MONGODB_URI);
+const server = require("./src/app");
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
-require('dotenv').config();
-const MONGODB_URI = process.env.MONGODB;
-const initializeSocket = require('./src/controllers/Utils/Socket');
-const { Server } = require('socket.io');
-const { createServer } = require('node:http');
+const initializeSocket = require("./src/controllers/Utils/Socket");
+const { Server } = require("socket.io");
+const { createServer } = require("node:http");
 
 // Conecta a MongoDB primero
 mongoose
-  .connect(MONGODB_URI)
+  .connect(
+    `mongodb+srv://GGuenov:Forcoding12@clustercero.awmiffq.mongodb.net/?retryWrites=true&w=majority`
+  )
   .then(() => {
-    console.log('Connected to MongoDB Atlas');
+    console.log("Connected to MongoDB Atlas");
   })
   .catch((error) => {
-    console.error('Error connection', error);
+    console.error("Error connection", error);
   });
 
-// Luego inicia el servidor
 const httpServer = createServer(server);
 
-// Configura CORS para permitir solicitudes desde el origen de tu aplicación React
 const io = new Server(httpServer, {
   cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
   },
 });
 // importaciones para que funcione socket.io en otro archivo
-const socketChat = require('./src/controllers/Utils/Socket.io/ChatSocket');
+const socketChat = require("./src/controllers/Utils/Socket.io/ChatSocket");
 socketChat(io);
 
 httpServer.listen(PORT, () => {

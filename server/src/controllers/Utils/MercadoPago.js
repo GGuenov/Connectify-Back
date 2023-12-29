@@ -11,10 +11,10 @@ mercadopago.configure({
 });
 
 const mercadoPago = (req, res) => {
-  // const SUCCESS = `http://localhost:5173/payments/${req.body.userName}?idProf=${req.body.idProf}`;
-  const SUCCESS = `${MERCADOPAGO_SUCCESS}/payments/${req.body.userName}?idProf=${req.body.idProf}`;
-  // const FAILURE = `http://localhost:5173/payments/${req.body.userName}?idProf=${req.body.idProf}`;
-  const FAILURE = `${MERCADOPAGO_FAILURE}/payments/${req.body.userName}?idProf=${req.body.idProf}`;
+  const SUCCESS = `http://localhost:5173/payments/${req.body.userName}?idProf=${req.body.idProf}`;
+  // const SUCCESS = `${MERCADOPAGO_SUCCESS}/payments/${req.body.userName}?idProf=${req.body.idProf}`;
+  const FAILURE = `http://localhost:5173/payments/${req.body.userName}?idProf=${req.body.idProf}`;
+  // const FAILURE = `${MERCADOPAGO_FAILURE}/payments/${req.body.userName}?idProf=${req.body.idProf}`;
 
   // console.log("utilsMP!!!", req.body);
 
