@@ -1,5 +1,5 @@
-const cloudinary = require('cloudinary').v2;
-require('dotenv').config();
+const cloudinary = require("cloudinary").v2;
+require("dotenv").config();
 const cloudName = process.env.CLOUDINARY_NAME;
 const apiKey = process.env.CLOUDINARY_API_KEY;
 const apiSecret = process.env.CLOUDINARY_API_SECRET;
@@ -13,7 +13,7 @@ cloudinary.config({
 
 const uploadImage = async (filePath) => {
   return await cloudinary.uploader.upload(filePath, {
-    folder: 'Connectify',
+    folder: "Connectify",
   });
 };
 

@@ -4,7 +4,7 @@
 // console.log(MONGODB_URI);
 const server = require("./src/app");
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 const initializeSocket = require("./src/controllers/Utils/Socket");
 const { Server } = require("socket.io");
 const { createServer } = require("node:http");
@@ -33,7 +33,7 @@ const io = new Server(httpServer, {
 // importaciones para que funcione socket.io en otro archivo
 const socketChat = require("./src/controllers/Utils/Socket.io/ChatSocket");
 socketChat(io);
-
+console.log(PORT);
 httpServer.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
